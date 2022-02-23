@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ERPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="category_tbl">
+          <Key>
+            <PropertyRef Name="category_id" />
+          </Key>
+          <Property Name="category_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="category_name" Type="nchar" MaxLength="10" />
+          <Property Name="date_added" Type="datetime" />
+        </EntityType>
+        <EntityType Name="customer_tbl">
+          <Key>
+            <PropertyRef Name="customer_id" />
+          </Key>
+          <Property Name="customer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customer_name" Type="varchar" MaxLength="50" />
+          <Property Name="customer_address" Type="varchar" MaxLength="50" />
+          <Property Name="customer_email" Type="varchar" MaxLength="50" />
+          <Property Name="customer_mobile" Type="varchar" MaxLength="50" />
+          <Property Name="customer_status" Type="bit" />
+          <Property Name="added_by" Type="int" />
+          <Property Name="date_added" Type="datetime" />
+        </EntityType>
+        <EntityType Name="inventory_tbl">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="item_code" Type="varchar" MaxLength="50" />
+          <Property Name="item_description" Type="varchar" MaxLength="50" />
+          <Property Name="category" Type="varchar" MaxLength="50" />
+          <Property Name="price" Type="float" />
+          <Property Name="buffer" Type="float" />
+          <Property Name="status" Type="bit" />
+          <Property Name="added_by" Type="varchar" MaxLength="50" />
+          <Property Name="date_added" Type="datetime" />
+        </EntityType>
+        <EntityType Name="role_tbl">
+          <Key>
+            <PropertyRef Name="role_id" />
+          </Key>
+          <Property Name="role_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="role_name" Type="varchar" MaxLength="50" />
+          <Property Name="role_status" Type="bit" />
+        </EntityType>
+        <EntityType Name="supplier_tbl">
+          <Key>
+            <PropertyRef Name="supplier_id" />
+          </Key>
+          <Property Name="supplier_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="supplier_name" Type="varchar" MaxLength="50" />
+          <Property Name="supplier_address" Type="varchar" MaxLength="50" />
+          <Property Name="supplier_email" Type="varchar" MaxLength="50" />
+          <Property Name="supplier_mobile" Type="varchar" MaxLength="50" />
+          <Property Name="supplier_status" Type="bit" />
+          <Property Name="added_by" Type="varchar" MaxLength="50" />
+          <Property Name="date_added" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="ERPModelStoreContainer">
+          <EntitySet Name="category_tbl" EntityType="Self.category_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customer_tbl" EntityType="Self.customer_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="inventory_tbl" EntityType="Self.inventory_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="role_tbl" EntityType="Self.role_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="supplier_tbl" EntityType="Self.supplier_tbl" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ERPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="category_tbl">
+          <Key>
+            <PropertyRef Name="category_id" />
+          </Key>
+          <Property Name="category_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="category_name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="date_added" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="CategoryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="category_tbl" EntityType="Self.category_tbl" />
+          <EntitySet Name="role_tbl" EntityType="ERPModel.role_tbl" />
+          <EntitySet Name="customer_tbl" EntityType="ERPModel.customer_tbl" />
+          <EntitySet Name="inventory_tbl" EntityType="ERPModel.inventory_tbl" />
+          <EntitySet Name="supplier_tbl" EntityType="ERPModel.supplier_tbl" />
+        </EntityContainer>
+        <EntityType Name="role_tbl">
+          <Key>
+            <PropertyRef Name="role_id" />
+          </Key>
+          <Property Name="role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="role_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="role_status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="customer_tbl">
+          <Key>
+            <PropertyRef Name="customer_id" />
+          </Key>
+          <Property Name="customer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customer_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="customer_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="customer_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="customer_mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="customer_status" Type="Boolean" />
+          <Property Name="added_by" Type="Int32" />
+          <Property Name="date_added" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="inventory_tbl">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="item_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="item_description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Double" />
+          <Property Name="buffer" Type="Double" />
+          <Property Name="status" Type="Boolean" />
+          <Property Name="added_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="date_added" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="supplier_tbl">
+          <Key>
+            <PropertyRef Name="supplier_id" />
+          </Key>
+          <Property Name="supplier_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="supplier_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="supplier_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="supplier_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="supplier_mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="supplier_status" Type="Boolean" />
+          <Property Name="added_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="date_added" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ERPModelStoreContainer" CdmEntityContainer="CategoryEntities">
+          <EntitySetMapping Name="category_tbl">
+            <EntityTypeMapping TypeName="ERPModel.category_tbl">
+              <MappingFragment StoreEntitySet="category_tbl">
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="category_name" ColumnName="category_name" />
+                <ScalarProperty Name="date_added" ColumnName="date_added" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="role_tbl">
+            <EntityTypeMapping TypeName="ERPModel.role_tbl">
+              <MappingFragment StoreEntitySet="role_tbl">
+                <ScalarProperty Name="role_status" ColumnName="role_status" />
+                <ScalarProperty Name="role_name" ColumnName="role_name" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customer_tbl">
+            <EntityTypeMapping TypeName="ERPModel.customer_tbl">
+              <MappingFragment StoreEntitySet="customer_tbl">
+                <ScalarProperty Name="date_added" ColumnName="date_added" />
+                <ScalarProperty Name="added_by" ColumnName="added_by" />
+                <ScalarProperty Name="customer_status" ColumnName="customer_status" />
+                <ScalarProperty Name="customer_mobile" ColumnName="customer_mobile" />
+                <ScalarProperty Name="customer_email" ColumnName="customer_email" />
+                <ScalarProperty Name="customer_address" ColumnName="customer_address" />
+                <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="inventory_tbl">
+            <EntityTypeMapping TypeName="ERPModel.inventory_tbl">
+              <MappingFragment StoreEntitySet="inventory_tbl">
+                <ScalarProperty Name="date_added" ColumnName="date_added" />
+                <ScalarProperty Name="added_by" ColumnName="added_by" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="buffer" ColumnName="buffer" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="item_description" ColumnName="item_description" />
+                <ScalarProperty Name="item_code" ColumnName="item_code" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="supplier_tbl">
+            <EntityTypeMapping TypeName="ERPModel.supplier_tbl">
+              <MappingFragment StoreEntitySet="supplier_tbl">
+                <ScalarProperty Name="date_added" ColumnName="date_added" />
+                <ScalarProperty Name="added_by" ColumnName="added_by" />
+                <ScalarProperty Name="supplier_status" ColumnName="supplier_status" />
+                <ScalarProperty Name="supplier_mobile" ColumnName="supplier_mobile" />
+                <ScalarProperty Name="supplier_email" ColumnName="supplier_email" />
+                <ScalarProperty Name="supplier_address" ColumnName="supplier_address" />
+                <ScalarProperty Name="supplier_name" ColumnName="supplier_name" />
+                <ScalarProperty Name="supplier_id" ColumnName="supplier_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
